@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    const response = process.env.NODE_ENV === 'development' ? { message: 'Something broke!', error: err.stack } : { message: 'Something broke!' };
+    const response = process.env.NODE_ENV === 'development' ? { message: 'Something broke!', error: err.stack } : { message: 'Internal Server Error' };
     res.status(500).json(response);
 });
 
