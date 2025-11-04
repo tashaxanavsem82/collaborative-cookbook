@@ -20,7 +20,8 @@ app.get('/', (req, res) => {
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).json({ message: 'Something broke!' });
+    const response = process.env.NODE_ENV === 'development' ? { message: 'Something broke!', error: err } : { message: 'Something broke!' };
+    res.status(500).json(response);
 });
 
 app.listen(PORT, () => {
